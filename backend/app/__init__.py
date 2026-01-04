@@ -17,7 +17,12 @@ def create_app(config_class=Config):
     db.init_app(app)
     migrate.init_app(app, db)
     jwt.init_app(app)
-    CORS(app)
+    
+    # CORS: Allow Vercel production URL and local development
+    CORS(app, resources={r"/*": {"origins": [
+        "https://queens-mall.vercel.app", 
+        "http://localhost:5173"
+    ]}})
 
     # JWT Error Handlers for debugging
     @jwt.invalid_token_loader
