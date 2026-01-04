@@ -1,0 +1,1 @@
+﻿from app import create_app, db; from sqlalchemy import text; app = create_app(); ctx = app.app_context(); ctx.push(); db.session.execute(text('ALTER TABLE tenant ADD COLUMN image_url VARCHAR(500)')); db.session.execute(text('ALTER TABLE tenant ADD COLUMN description TEXT')); db.session.commit(); print('Migration complete')
