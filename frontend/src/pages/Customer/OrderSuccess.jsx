@@ -1,54 +1,112 @@
 import React from 'react';
-import { Box, Typography, Button, Container } from '@mui/material';
-import { CheckCircleOutline } from '@mui/icons-material';
+import { Box, Typography, Button, Container, Paper } from '@mui/material';
+import { CheckCircleRounded } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 const OrderSuccess = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', bgcolor: 'background.default' }}>
-            <Navbar role="customer" />
-            <Box component="main" sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Container maxWidth="sm">
-                <Box 
-                    sx={{ 
-                        animation: 'popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                        '@keyframes popIn': {
-                            '0%': { transform: 'scale(0)', opacity: 0 },
-                            '100%': { transform: 'scale(1)', opacity: 1 }
-                        }
-                    }}
-                >
-                     <img 
-                        src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3hveHR6Z3U4aDhmYjB6MmF6b3hqZm16YjRmYjB6MmF6b3hqZm16YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tf9jjMcO77YzV4YPwE/giphy.gif" 
-                        alt="Success Animation" 
-                        style={{ width: 250, height: 250, borderRadius: '50%', marginBottom: 20 }} 
-                    />
-                </Box>
-                
-                <Typography variant="h3" fontWeight="bold" gutterBottom sx={{ color: '#2e7d32' }}>
-                    Order Placed!
-                </Typography>
-                <Typography variant="h6" color="text.secondary" paragraph>
-                    Thank you for your purchase. Your order has been successfully placed.
-                </Typography>
-                
-                <Box sx={{ mt: 4, display: 'flex', gap: 2, justifyContent: 'center' }}>
-                    <Button variant="outlined" onClick={() => navigate('/customer')}>
-                        Return Home
-                    </Button>
-                    <Button variant="contained" onClick={() => navigate('/customer/profile')}>
-                        View Orders
-                    </Button>
-                </Box>
-                </Container>
+  return (
+    <Box
+      sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        bgcolor: 'background.default',
+      }}
+    >
+      <Navbar role="customer" />
+
+      {/* Main Content */}
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          px: 2,
+        }}
+      >
+        <Container maxWidth="sm">
+          <Paper
+            elevation={6}
+            sx={{
+              p: 5,
+              textAlign: 'center',
+              borderRadius: 4,
+              backdropFilter: 'blur(12px)',
+              background:
+                'linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02))',
+              animation: 'popIn 0.5s ease-out',
+              '@keyframes popIn': {
+                from: { transform: 'scale(0.9)', opacity: 0 },
+                to: { transform: 'scale(1)', opacity: 1 },
+              },
+            }}
+          >
+            {/* Success Icon */}
+            <CheckCircleRounded
+              sx={{
+                fontSize: 110,
+                color: '#2e7d32',
+                mb: 2,
+              }}
+            />
+
+            {/* Title */}
+            <Typography
+              variant="h4"
+              fontWeight="bold"
+              sx={{ color: '#2e7d32', mb: 1 }}
+            >
+              Order Placed Successfully
+            </Typography>
+
+            {/* Subtitle */}
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ mb: 4 }}
+            >
+              Thanks for shopping with us. Your order is confirmed and being
+              processed.
+            </Typography>
+
+            {/* Actions */}
+            <Box
+              sx={{
+                display: 'flex',
+                gap: 2,
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+              }}
+            >
+              <Button
+                variant="outlined"
+                size="large"
+                onClick={() => navigate('/customer')}
+              >
+                Return Home
+              </Button>
+
+              <Button
+                variant="contained"
+                size="large"
+                onClick={() => navigate('/customer/profile')}
+              >
+                View Orders
+              </Button>
             </Box>
-            <Footer />
-        </Box>
-    );
+          </Paper>
+        </Container>
+      </Box>
+
+      <Footer />
+    </Box>
+  );
 };
 
 export default OrderSuccess;
