@@ -27,6 +27,7 @@ const OrderSuccess = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          py: 10,
           px: 2,
         }}
       >
